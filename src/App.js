@@ -1,6 +1,10 @@
 import React from "react";
 import "./App.css";
-import {Navbar} from "./components";
+import {Routes, Route, Link} from "react-router-dom";
+
+import {Layout, Space, Typography} from "antd";
+
+import {Navbar, Exchanges, CryptoCurrencies, CryptoDetails, Homepage, News} from "./components";
 
 function App() {
 	return (
@@ -9,10 +13,27 @@ function App() {
 				<Navbar/>
 			</div>
 			<div className="main">
-
-			</div>
-			<div className="footer">
-
+				<Layout>
+					<div className="routes">
+						<Routes>
+							<Route index path="/" element={<Homepage/>}/>
+							<Route exact path="/exchanges" element={<Exchanges/>}/>
+							<Route exact path="/cryptocurrencies" element={<CryptoCurrencies/>}/>
+							<Route exact path="/crypto/:coinId" element={<CryptoDetails/>}/>
+							<Route path="/news" element={<News/>}/>
+						</Routes>
+					</div>
+				</Layout>
+				<div className="footer">
+					<Typography.Title level={5} style={{color: "white", textAlign: "center"}}>
+						cryptoverse <br/> all rights reserved
+					</Typography.Title>
+					<Space>
+						<Link to="/">home</Link>
+						<Link to="/exchanges">exchanges</Link>
+						<Link to="/news">news</Link>
+					</Space>
+				</div>
 			</div>
 		</div>
 	);
